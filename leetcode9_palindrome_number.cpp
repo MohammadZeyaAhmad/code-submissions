@@ -1,21 +1,21 @@
-// Given an integer x, return true if x is a palindrome, and false otherwise.
-
-
 class Solution {
 public:
-    bool isPalindrome(int x) {
-        long long  rev=0;
-        int temp=x;
-        while(temp>0)
-        {
-            if(rev>x )
-            {
-                return false;
-            }
-            rev=rev*10+temp%10;
-            temp=temp/10;
-        }
-
-        return rev==x;
+    bool isPalindrome(int n) {
+    if(n<0){return false;}
+    if(n==0){return true;};
+    int left=floor(log10(n));
+    left=pow(10,left);
+    int right=10;
+    while(left>=right)
+    {
+      if(n/left!=n%10)
+      {
+          return false;
+      }
+      n%=left;
+      n/=10;
+      left/=100;
+    }
+    return true;
     }
 };
