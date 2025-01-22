@@ -1,0 +1,17 @@
+
+ bool isPalindrome(int x) {
+    int left=log10(n);
+    left=pow(10,left);
+    int right=10;
+    while(left>right)
+    {
+      if(n/left!=n%10)
+      {
+          return false;
+      }
+      n%=left;
+      n/=10;
+      left/=100;
+    }
+    return true;
+}
