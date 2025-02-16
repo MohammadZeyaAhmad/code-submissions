@@ -12,6 +12,16 @@ You may assume the two numbers do not contain any leading zero, except the numbe
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
@@ -21,45 +31,16 @@ public:
         while(l1 || l2)
         {
                 ListNode *curr=new ListNode();
-                if(l1 && l2){
-                  int digit=l1->val+l2->val+carry;
-                   if(digit>=10){
-                       curr->val=digit%10;
-                       carry=digit/10;
-                   }else{
-                      curr->val=digit%10;
-                       carry=0;
-                   }
-                }else if(l1){
-                    int digit=l1->val+carry;
-                   if(digit>=10){
-                       curr->val=digit%10;
-                       carry=digit/10;
-                   }else{
-                      curr->val=digit%10;
-                       carry=0;
-                   }
-                }else
-                {
-                    int digit=l2->val+carry;
-                   if(digit>=10){
-                       curr->val=digit%10;
-                       carry=digit/10;
-                   }else{
-                      curr->val=digit%10;
-                       carry=0;
-                   }
-                }
-               
+                int digit=l1&&l2?l1->val+l2->val+carry:l1?l1->val+carry:digit=l2->val+carry;
+                curr->val=digit>=10?digit%10:digit;
+                carry=digit/10;
                 if(prev==NULL)
                 {
-                    prev=curr;
                     curr->next=NULL;
                     head=curr;
                 }else
                 {
                     prev->next=curr;
-                    prev=curr;
                 }
                 l1=l1?l1->next?l1->next:NULL:NULL;
                 l2=l2?l2->next?l2->next:NULL:NULL;
